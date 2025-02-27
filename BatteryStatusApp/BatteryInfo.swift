@@ -33,12 +33,12 @@ struct BatteryInfo {
             return "使用外接电源中"
         }
         if isCharging {
-            if avgTimeToFull == -1 || avgTimeToFull == 65535 {
+            if avgTimeToFull == -1 || avgTimeToFull >= 65534 {
                 return "充电中，剩余时间未知"
             }
             return "充满剩余时间：\(avgTimeToFull) 分钟"
         } else {
-            if avgTimeToEmpty == -1 || avgTimeToEmpty == 65535 {
+            if avgTimeToEmpty == -1 || avgTimeToEmpty >= 65534 {
                 return "放电中，剩余时间未知"
             }
             return "剩余使用时间：\(avgTimeToEmpty) 分钟"
@@ -49,7 +49,7 @@ struct BatteryInfo {
     var chargingStatusDescription: String {
         if isCharging {
             return "充电中"
-        } else if avgTimeToEmpty == 65535 {
+        } else if isOnACPower {
             return "使用外接电源"
         } else {
             return "放电中"

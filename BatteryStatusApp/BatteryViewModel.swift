@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import Dispatch
 
 class BatteryViewModel: ObservableObject {
     @Published var batteryInfo = BatteryInfo()
@@ -25,6 +26,7 @@ class BatteryViewModel: ObservableObject {
         var info = BatteryInfo()
 
         let lines = output.components(separatedBy: .newlines)
+        //print("lines: \(lines)") // 调试输出
         for line in lines {
             if line.contains("CurrentCapacity") {
                 let components = line.components(separatedBy: "=")
@@ -83,15 +85,25 @@ class BatteryViewModel: ObservableObject {
                     info.avgTimeToEmpty = (time == 65535) ? -1 : time // 处理无效数据
                 }
             }
-            if line.contains("ExternalConnected") {
+//            if line.contains("ExternalConnected") {
+//                let components = line.components(separatedBy: "=")
+//                if components.count > 1 {
+//                    let value = components[1].trimmingCharacters(in: .whitespaces)
+//                    info.isOnACPower = value == "Yes"
+//                    print("Parsed isOnACPower: \(info.isOnACPower)") // 调试输出
+//                }
+//            }
+            if line.trimmingCharacters(in: .whitespaces).hasPrefix("\"ExternalConnected\"") {
                 let components = line.components(separatedBy: "=")
                 if components.count > 1 {
                     let value = components[1].trimmingCharacters(in: .whitespaces)
                     info.isOnACPower = value == "Yes"
+                    print("Parsed isOnACPower: \(info.isOnACPower)") // 调试输出
                 }
             }
         }
-
+        
+        // 确保在主线程更新
         if info.designCapacity > 0 {
             DispatchQueue.main.async {
                 self.batteryInfo = info
