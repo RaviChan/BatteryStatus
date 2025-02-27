@@ -1,15 +1,8 @@
 # Battery Status Monitor
 
-<!-- Language Switch Buttons -->
-<div align="right">
-  <button onclick="switchLanguage('en')">English</button>
-  <button onclick="switchLanguage('zh')">中文</button>
-</div>
+[English](#english) | [中文](#chinese)
 
-<!-- English Content -->
-<div id="en">
-  ![Swift](https://img.shields.io/badge/Swift-5.7-orange) ![Platform](https://img.shields.io/badge/Platform-macOS-blue) ![License](https://img.shields.io/badge/License-MIT-green)
-
+<a name="english"></a>
   A macOS application to monitor battery status, including charge level, health, cycle count, temperature, and charging/discharging status. Built with Swift and SwiftUI.
 
   ## Features
@@ -60,12 +53,10 @@
 
   - **RaviChen**
     - GitHub: [RaviChan](https://github.com/RaviChan)
-</div>
 
-<!-- Chinese Content -->
-<div id="zh" style="display: none;">
-  ![Swift](https://img.shields.io/badge/Swift-5.7-orange) ![Platform](https://img.shields.io/badge/Platform-macOS-blue) ![License](https://img.shields.io/badge/License-MIT-green)
 
+---
+<a name="chinese"></a>
   一款用于监控电池状态的 macOS 应用程序，包括电量、健康度、循环次数、温度以及充电/放电状态。使用 Swift 和 SwiftUI 构建。
 
   ## 功能
