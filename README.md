@@ -107,14 +107,3 @@
 
   - **RaviChen**
   - GitHub: [RaviChan](https://github.com/RaviChan)
-</div>
-
-<!-- Language Switch Script -->
-<script>
-  function switchLanguage(lang) {
-    document.getElementById('en').style.display = (lang === 'en') ? 'block' : 'none';
-    document.getElementById('zh').style.display = (lang === 'zh') ? 'block' : 'none';
-  }
-  // Default to English
-  switchLanguage('en');
-</script>
