@@ -12,7 +12,7 @@ struct BatteryStatusApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .frame(minWidth: 300, maxWidth: 300, minHeight: 400)
+                .frame(minWidth: 300, maxWidth: 300, minHeight: 500)
         }
         .windowResizability(.contentSize)
     }

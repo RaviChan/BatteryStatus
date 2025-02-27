@@ -15,6 +15,13 @@ struct BatteryInfo {
     var avgTimeToFull: Int = -1 // 充满剩余时间（分钟），-1 表示未知
     var avgTimeToEmpty: Int = -1 // 放电剩余时间（分钟），-1 表示未知
     var isOnACPower: Bool = false // 是否使用外接电源
+    
+    // 计算电量百分比
+    var percentage: String {
+        guard maxCapacity > 0 else { return "0.00%" }
+        let percent = Double(currentCapacity) / Double(maxCapacity) * 100
+        return String(format: "%.2f%%", percent)
+    }
 
     var health: Int {
         guard designCapacity > 0 else { return 0 }
@@ -37,6 +44,7 @@ struct BatteryInfo {
             return "剩余使用时间：\(avgTimeToEmpty) 分钟"
         }
     }
+    
     
     var chargingStatusDescription: String {
         if isCharging {

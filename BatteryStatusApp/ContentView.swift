@@ -21,6 +21,7 @@ struct ContentView: View {
             } else {
                 // 电池信息显示
                 InfoRow(title: "当前电量", value: "\(viewModel.batteryInfo.currentCapacity) mAh")
+                InfoRow(title: "电量剩余", value: viewModel.batteryInfo.percentage)
                 InfoRow(title: "最大容量", value: "\(viewModel.batteryInfo.maxCapacity) mAh")
                 InfoRow(title: "设计容量", value: "\(viewModel.batteryInfo.designCapacity) mAh")
                 InfoRow(title: "健康状态", value: "\(viewModel.batteryInfo.health)%")
