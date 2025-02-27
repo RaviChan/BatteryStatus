@@ -49,7 +49,7 @@ struct BatteryInfo {
     var chargingStatusDescription: String {
         if isCharging {
             return "充电中"
-        } else if avgTimeToFull == 65535 {
+        } else if avgTimeToEmpty == 65535 {
             return "使用外接电源"
         } else {
             return "放电中"
