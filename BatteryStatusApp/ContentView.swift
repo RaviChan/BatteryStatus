@@ -44,6 +44,8 @@ struct ContentView: View {
                     .cornerRadius(10)
             }
             .padding(.top)
+            .buttonStyle(.plain) // 取消默认的按钮样式
+            .focusable(false) // 取消 macOS 的默认焦点边框
         }
         .padding()
         .frame(width: 300)
