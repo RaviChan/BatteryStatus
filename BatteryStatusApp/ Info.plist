@@ -3,8 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>NSAppleEventsUsageDescription</key>
-    <string>需要访问电池状态信息</string>
-    <key>CFBundleIconName</key>
-    <string>AppIcon</string>
+	<string>需要访问电池状态信息</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
+	<key>CFBundleIconName</key>
+	<string>AppIcon</string>
 </dict>
 </plist>

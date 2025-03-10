@@ -33,18 +33,32 @@ struct BatteryInfo {
             return "使用外接电源中"
         }
         if isCharging {
-            if avgTimeToFull == -1 || avgTimeToFull >= 65534 {
+            if avgTimeToFull <= 0 || avgTimeToFull >= 65534 {
                 return "充电中，剩余时间未知"
             }
-            return "充满剩余时间：\(avgTimeToFull) 分钟"
+            return formatTime(minutes: avgTimeToFull, prefix: "充满剩余时间：")
         } else {
-            if avgTimeToEmpty == -1 || avgTimeToEmpty >= 65534 {
+            if avgTimeToEmpty <= 0 || avgTimeToEmpty >= 65534 {
                 return "放电中，剩余时间未知"
             }
-            return "剩余使用时间：\(avgTimeToEmpty) 分钟"
+            return formatTime(minutes: avgTimeToEmpty, prefix: "剩余使用时间：")
         }
     }
     
+    // 格式化时间显示，将分钟转换为小时和分钟
+    private func formatTime(minutes: Int, prefix: String) -> String {
+        if minutes < 60 {
+            return "\(prefix)\(minutes) 分钟"
+        } else {
+            let hours = minutes / 60
+            let mins = minutes % 60
+            if mins == 0 {
+                return "\(prefix)\(hours) 小时"
+            } else {
+                return "\(prefix)\(hours) 小时 \(mins) 分钟"
+            }
+        }
+    }
     
     var chargingStatusDescription: String {
         if isCharging {

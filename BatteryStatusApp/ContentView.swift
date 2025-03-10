@@ -25,11 +25,10 @@ struct ContentView: View {
                 InfoRow(title: "最大容量", value: "\(viewModel.batteryInfo.maxCapacity) mAh")
                 InfoRow(title: "设计容量", value: "\(viewModel.batteryInfo.designCapacity) mAh")
                 InfoRow(title: "健康状态", value: "\(viewModel.batteryInfo.health)%")
-                //InfoRow(title: "电源状态", value: viewModel.batteryInfo.isCharging ? "充电中" : "未充电")
                 InfoRow(title: "电源状态", value: viewModel.batteryInfo.chargingStatusDescription)
                 InfoRow(title: "剩余时间", value: viewModel.batteryInfo.timeRemainingDescription)
                 InfoRow(title: "循环次数", value: "\(viewModel.batteryInfo.cycleCount)")
-                InfoRow(title: "温度", value: String(format: "%.1f°C", viewModel.batteryInfo.temperature))
+                InfoRow(title: "温度", value: String(format: "%.2f°C", viewModel.batteryInfo.temperature))
             }
 
             // 刷新按钮
