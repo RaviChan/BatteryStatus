@@ -73,6 +73,7 @@ class BatteryViewModel: ObservableObject {
     }
     
     // BatteryViewModel.swift 中的 processBasicPowerInfo 函数修改
+
     private func processBasicPowerInfo(powerSourceInfo: [String: Any]) -> BatteryInfo {
         var info = BatteryInfo()
         
@@ -86,6 +87,13 @@ class BatteryViewModel: ObservableObject {
                 if let isCharging = powerSourceInfo["Is Charging"] as? Bool {
                     info.isCharging = isCharging
                     print("充电状态 Is Charging: \(isCharging)")
+                }
+                
+                // 检查 Time to Full Charge 是否为 0
+                if let timeToFull = powerSourceInfo["Time to Full Charge"] as? Int, timeToFull == 0 {
+                    // 当 Time to Full Charge 为 0 时，强制设置为使用外接电源状态
+                    info.isCharging = false
+                    print("检测到 Time to Full Charge 为 0，设置为使用外接电源状态")
                 }
             } else if powerSourceState == "Battery Power" {
                 // 电池供电状态，既不是外接电源也不是充电
@@ -102,6 +110,12 @@ class BatteryViewModel: ObservableObject {
             if let isCharging = powerSourceInfo["IsCharging"] as? Bool {
                 info.isCharging = isCharging
                 print("充电状态(备用) IsCharging: \(isCharging)")
+            }
+            
+            // 备用逻辑中也检查 Time to Full Charge
+            if let timeToFull = powerSourceInfo["Time to Full Charge"] as? Int, timeToFull == 0 {
+                info.isCharging = false
+                print("检测到 Time to Full Charge 为 0，设置为使用外接电源状态(备用逻辑)")
             }
         }
         
